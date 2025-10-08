@@ -1,6 +1,5 @@
 package com.github.argon.sos.planttree.log;
 
-
 import com.github.argon.sos.planttree.util.StringUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +34,7 @@ public class Logger {
 
     public Logger(Class<?> clazz, Level level) {
         this.name = clazz.getCanonicalName();
-        this.shortName = StringUtil.shortenName(clazz);
+        this.shortName = StringUtil.shortenClassName(clazz);
         this.displayName = StringUtil.cutOrFill(shortName, NAME_DISPLAY_MAX_LENGTH, false);
         this.level = level;
     }
@@ -89,11 +88,11 @@ public class Logger {
     private void doLog(String levelText, String formatMsg, Object[] args) {
         try {
             LOG.ln(String.format(LOG_MSG_FORMAT,
-                PREFIX_MOD,
-                timestamp(),
-                displayName,
-                levelText,
-                String.format(formatMsg, stringifyValues(args))));
+                    PREFIX_MOD,
+                    timestamp(),
+                    displayName,
+                    levelText,
+                    String.format(formatMsg, stringifyValues(args))));
         } catch (Exception e) {
             System.err.println("PROBLEM WHILE LOGGING!");
             System.err.println("formatMsg: " + formatMsg);
@@ -122,11 +121,11 @@ public class Logger {
     private void doLogErr(String msgPrefix, String formatMsg, Object[] args) {
         try {
             LOG.err((String.format(LOG_MSG_FORMAT,
-                PREFIX_MOD,
-                timestamp(),
-                displayName,
-                msgPrefix,
-                String.format(formatMsg, stringifyValues(args)))));
+                    PREFIX_MOD,
+                    timestamp(),
+                    displayName,
+                    msgPrefix,
+                    String.format(formatMsg, stringifyValues(args)))));
         } catch (Exception e) {
             System.err.println("PROBLEM WHILE LOGGING!");
             System.err.println("formatMsg: " + formatMsg);

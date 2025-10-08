@@ -2,28 +2,46 @@ package com.github.argon.sos.planttree.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.Nullable;
-import snake2d.util.sprite.text.Str;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StringUtil {
 
+    /**
+     * Transforms multiple objects into a string.
+     *
+     * @param objects to transform into a string
+     * @return build string
+     */
     public static String toString(Object[] objects) {
         return Arrays.toString(objects);
     }
 
+    /**
+     * Transforms a key value map into a string.
+     *
+     * @param map to transform into a string
+     * @return build string
+     */
     public static String toString(Map<?, ?> map) {
         return map.keySet().stream()
-            .map(key -> key + "=" + map.get(key))
-            .collect(Collectors.joining(", ", "{", "}"));
+                .map(key -> key + "=" + map.get(key))
+                .collect(Collectors.joining(", ", "{", "}"));
     }
 
-    public static String toStringPrimitiveArray(@Nullable Object arg) {
+    /**
+     * Will transform primitive array types into strings.
+     *
+     * @param arg the primitive array
+     * @return built string
+     */
+    public static String toStringPrimitiveArray(Object arg) {
         if (arg == null) {
             return "null";
         } else if (arg instanceof int[]) {
@@ -47,24 +65,38 @@ public class StringUtil {
         return arg.toString();
     }
 
+    /**
+     * Will transform an array of any object to a string.
+     *
+     * @param args array with object to transform
+     * @return built string
+     */
     public static Object[] stringifyValues(Object[] args) {
         Object[] stringArgs = new Object[args.length];
 
         for (int i = 0; i < args.length; i++) {
             Object arg = args[i];
-            stringArgs[i] = stringifyValue(arg);
+            stringArgs[i] = stringify(arg);
         }
 
         return stringArgs;
     }
 
-    public static String stringifyValue(@Nullable Object arg) {
+    /**
+     * Will transform a single value into a string.
+     *
+     * @param arg to transform
+     * @return built string
+     */
+    public static String stringify(Object arg) {
         if (arg == null) {
             return "null";
         } else if (arg instanceof String) {
             return (String) arg;
         } if (arg instanceof Double) {
-            return String.format("%1$,.4f", (Double) arg);
+            return String.format(Locale.US, "%.4f", (Double) arg);
+        } else if (arg instanceof Float) {
+            return String.format(Locale.US, "%.4f", (Float) arg);
         } else if (arg instanceof Map) {
             return StringUtil.toString((Map<?, ?>) arg);
         } else if (arg instanceof Object[]) {
@@ -76,16 +108,58 @@ public class StringUtil {
         }
     }
 
-    public static String shortenName(Class<?> clazz) {
+    /**
+     * Will transform a {@link Throwable} into a string with stacktrace.
+     *
+     * @param throwable to transform
+     * @return built string
+     */
+    public static String stringify(Throwable throwable) {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        throwable.printStackTrace(printWriter);
+
+        return stringWriter.toString();
+    }
+
+    /**
+     * Will replace the packages with a single character in a class name.
+     * E.g. "java.lang.String" will be transformed to "j.l.String"
+     *
+     * @param clazz to read the class name from
+     * @return shortened class name
+     */
+    public static String shortenClassName(Class<?> clazz) {
         return shortenPackageName(clazz.getPackage().getName()) + '.' + clazz.getSimpleName();
     }
 
+    /**
+     * Will replace the packages with a single character in a package name.
+     * E.g. "java.lang" will be transformed to "j.l"
+     *
+     * @param packageName to shorten
+     * @return shortened class name
+     */
     public static String shortenPackageName(String packageName) {
+        if (packageName.isEmpty()) {
+            return packageName;
+        }
+
         return Arrays.stream(packageName.split("\\."))
-            .map(segment -> Character.toString(segment.charAt(0)))
-            .collect(Collectors.joining("."));
+                .filter(string -> !string.isEmpty())
+                .map(segment -> Character.toString(segment.charAt(0)))
+                .collect(Collectors.joining("."));
     }
 
+    /**
+     * Cuts a given text to a max length or fills it up with spaces to the max length.
+     *
+     *
+     * @param string to cut to max length or fill with spaces
+     * @param maxLength to fill or cut
+     * @param cutTail whether to cut from the start or the end
+     * @return cur ot filled string
+     */
     public static String cutOrFill(String string, int maxLength, boolean cutTail) {
         if (string.length() == maxLength) {
             return string;
@@ -102,8 +176,15 @@ public class StringUtil {
         return string + spacesString;
     }
 
-    public static String repeat(char character, int length) {
-        char[] chars = new char[length];
+    /**
+     * E.g. 'a' with amount 3 would be "aaa".
+     *
+     * @param character to repeat
+     * @param amount how often to repeat
+     * @return repeated character
+     */
+    public static String repeat(char character, int amount) {
+        char[] chars = new char[amount];
         Arrays.fill(chars, character);
 
         return new String(chars);

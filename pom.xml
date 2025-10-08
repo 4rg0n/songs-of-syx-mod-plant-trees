@@ -6,7 +6,7 @@
 
     <groupId>com.github.4rg0n</groupId>
     <artifactId>songs-of-syx-mod-plant-tree</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
 
     <profiles>
         <profile>
@@ -36,6 +36,17 @@
                 <os>
                     <family>windows</family>
                 </os>
+            </activation>
+        </profile>
+        <profile>
+            <id>windows-vizard</id>
+            <properties>
+                <game.mod.directory>${user.home}/AppData/Roaming/songsofsyx/mods</game.mod.directory>
+                <game.install.directory>E:/Steam/steamapps/common/Songs of Syx</game.install.directory>
+                <game.mod.uploader.directory>${user.home}/AppData/Roaming/songsofsyx/mods-uploader</game.mod.uploader.directory>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
         <profile>
@@ -119,7 +130,7 @@
 
         <!-- Game version -->
         <game.version.major>69</game.version.major>
-        <game.version.minor>27</game.version.minor>
+        <game.version.minor>39</game.version.minor>
 
         <!-- Build settings -->
         <game.version.directory>V${game.version.major}</game.version.directory>
@@ -141,7 +152,7 @@
         <junit-jupiter-engine.version>5.9.2</junit-jupiter-engine.version>
         <mockito-core.version>4.11.0</mockito-core.version>
         <assertj-core.version>3.24.2</assertj-core.version>
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.38</lombok.version>
         <jetbrains.annotations.version>24.1.0</jetbrains.annotations.version>
 
         <!-- Build plugin versions -->

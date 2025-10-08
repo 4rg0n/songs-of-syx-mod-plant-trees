@@ -29,13 +29,6 @@ public class Loggers {
     }
 
     /**
-     * Changes the log level of the given logger
-     */
-    public static void setLevel(Class<?> clazz, Level level) {
-        setLevels(clazz.getName(), level);
-    }
-
-    /**
      * Sets the log level of all registered loggers
      */
     public static void setLevels(Level level) {
@@ -48,18 +41,4 @@ public class Loggers {
         loggers.forEach((name, logger) -> logger.setLevel(level));
     }
 
-    /**
-     * Sets the level of all loggers which class name starts with (including package name)
-     */
-    public static void setLevels(String nameStartsWith, Level level) {
-        loggers.forEach((name, logger) -> {
-            if (name.startsWith(nameStartsWith)) {
-                logger.setLevel(level);
-            }
-        });
-    }
-
-    public static boolean isRootLevel(Level level) {
-        return (getRootLevel().getValue() > level.getValue());
-    }
 }
