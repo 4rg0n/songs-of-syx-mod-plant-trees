@@ -6,7 +6,7 @@
 
     <groupId>com.github.4rg0n</groupId>
     <artifactId>songs-of-syx-mod-plant-tree</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
 
     <profiles>
         <profile>
@@ -116,9 +116,9 @@
     </profiles>
 
     <properties>
-        <!-- Songs of Syx uses Java 1.8 -->
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Songs of Syx uses Java 21 -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- These settings will go into the mods _Info.txt file -->
@@ -129,8 +129,8 @@
         <mod.info>Planting a tree costs 3 wood and the ground needs a minimum moisture level of 33%.</mod.info>
 
         <!-- Game version -->
-        <game.version.major>69</game.version.major>
-        <game.version.minor>39</game.version.minor>
+        <game.version.major>70</game.version.major>
+        <game.version.minor>18</game.version.minor>
 
         <!-- Build settings -->
         <game.version.directory>V${game.version.major}</game.version.directory>

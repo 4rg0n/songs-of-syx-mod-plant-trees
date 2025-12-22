@@ -2,7 +2,7 @@ package settlement.job;
 
 import game.GAME;
 import game.audio.AUDIO;
-import game.audio.Sound;
+import game.audio.SoundRace;
 import init.resources.RESOURCE;
 import init.sprite.SPRITES;
 import settlement.entity.humanoid.Humanoid;
@@ -20,7 +20,7 @@ public class PlantTreeJob extends JobBuild {
     public final static CharSequence NAME = "Plant Tree";
     public final static CharSequence DESC = "Plants trees";
 
-    private final Sound sound;
+    private final SoundRace sound;
 
     private final PlacableMulti placer;
 
@@ -41,7 +41,7 @@ public class PlantTreeJob extends JobBuild {
                 resAmount);
 
         this.performTime = performTime;
-        this.sound = AUDIO.mono().get("CLEAR_TREE");
+        this.sound = AUDIO.race("CLEAR_TREE");
     }
 
     @Override
@@ -61,7 +61,7 @@ public class PlantTreeJob extends JobBuild {
     }
 
     @Override
-    protected Sound constructSound() {
+    protected SoundRace constructSound() {
         return sound;
     }
 
