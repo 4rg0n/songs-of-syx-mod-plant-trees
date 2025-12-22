@@ -55,4 +55,9 @@ public final class PlantTreeModScript implements SCRIPT {
 	public SCRIPT_INSTANCE createInstance() {
 		return new Instance();
 	}
+
+	@Override
+	public boolean forceInit() {
+		return true;
+	}
 }
