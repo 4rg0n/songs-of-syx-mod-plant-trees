@@ -134,7 +134,7 @@ public class PlantTreePlacer extends PlacableMulti {
         }
 
         plantTreeJob.init(tx, ty);
-        JOBS().set(plantTreeJob.index, tx, ty);
+        JOBS().set(plantTreeJob, tx, ty);
 
         if (!JOBS().planMode.is()) {
             JOBS().state.set(StateManager.State.RESERVABLE, JOBS().getter.get(jobPos));
