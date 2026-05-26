@@ -6,7 +6,7 @@
 
     <groupId>com.github.4rg0n</groupId>
     <artifactId>songs-of-syx-mod-plant-tree</artifactId>
-    <version>1.4.3</version>
+    <version>1.4.5</version>
 
     <profiles>
         <profile>
@@ -129,8 +129,8 @@
         <mod.info>Planting a tree costs 3 wood and the ground needs a minimum moisture level of 33%.</mod.info>
 
         <!-- Game version -->
-        <game.version.major>70</game.version.major>
-        <game.version.minor>18</game.version.minor>
+        <game.version.major>71</game.version.major>
+        <game.version.minor>15</game.version.minor>
 
         <!-- Build settings -->
         <game.version.directory>V${game.version.major}</game.version.directory>
