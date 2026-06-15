@@ -6,7 +6,7 @@
 
     <groupId>com.github.4rg0n</groupId>
     <artifactId>songs-of-syx-mod-plant-tree</artifactId>
-    <version>1.4.5</version>
+    <version>1.5.0</version>
 
     <profiles>
         <profile>
@@ -130,7 +130,7 @@
 
         <!-- Game version -->
         <game.version.major>71</game.version.major>
-        <game.version.minor>15</game.version.minor>
+        <game.version.minor>31</game.version.minor>
 
         <!-- Build settings -->
         <game.version.directory>V${game.version.major}</game.version.directory>

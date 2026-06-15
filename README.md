@@ -1,6 +1,6 @@
 # Songs of Syx Plant Tree Mod
 
-Ported to V65 & V70 by [VizardAlpha](https://github.com/VizardAlpha) <3
+Ported to V65, V70 & V71 by [VizardAlpha](https://github.com/VizardAlpha) <3
 
 ## Description
 
